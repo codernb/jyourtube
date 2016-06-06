@@ -1,0 +1,13 @@
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/controller/RequestController.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/access/VideoAccess.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/access/QueryExecuter.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/access/RequestAccess.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/model/PlayedRequest.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/YourtubeApplication.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/model/Video.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/model/Request.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/exception/NoEntryException.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/controller/DefaultController.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/access/PlayedRequestsAccess.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/exception/AccessException.java
+/home/cyril/Eclipses/workspace/yourtube/src/main/java/com/codernb/controller/VideoController.java

@@ -1,0 +1,171 @@
+/*C8*/SET SCHEMA PUBLIC
+DROP TABLE IF EXISTS playedRequest
+DISCONNECT
+/*C9*/SET SCHEMA PUBLIC
+DROP TABLE IF EXISTS request
+DISCONNECT
+/*C10*/SET SCHEMA PUBLIC
+DROP TABLE IF EXISTS video
+DISCONNECT
+/*C11*/SET SCHEMA PUBLIC
+CREATE TABLE IF NOT EXISTS video (id VARCHAR(11) PRIMARY KEY, title VARCHAR(255), description VARCHAR(16383), thumbnail VARCHAR(255), author VARCHAR(255))
+DISCONNECT
+/*C12*/SET SCHEMA PUBLIC
+CREATE TABLE IF NOT EXISTS request (videoId VARCHAR(11) NOT NULL FOREIGN KEY REFERENCES video(id), time BIGINT)
+DISCONNECT
+/*C13*/SET SCHEMA PUBLIC
+CREATE TABLE IF NOT EXISTS playedRequest (videoId VARCHAR(11) NOT NULL FOREIGN KEY REFERENCES video(id), time BIGINT, timePlayed BIGINT)
+DISCONNECT
+/*C14*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C15*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C16*/SET SCHEMA PUBLIC
+INSERT INTO VIDEO VALUES('qKEk1YCOz8Q','EN DIRECT : l''info internationale en continu par FRANCE 24','Regardez France 24 en DIRECT gratuitement : toute l''info internationale 24h/24. \u000a\u000aAbonnez-vous \u00e0 notre cha\u00eene sur YouTube : http://f24.my/YouTube\u000a\u000aCommentez l''actualit\u00e9 du jour sur FRANCE24. Nous attendons vos commentaires, vos r\u00e9actions !\u000aPour autant, ce fil de discussion doit rester un lieu d''\u00e9change et de respect mutuel. FRANCE24 n''est en aucun cas responsable des commentaires et avis laiss\u00e9s sur cette page. \u000a\u000aFrance 24 LIVE in English : http://f24.my/YTliveEN\u000a\u000a\u0641\u0631\u0627\u0646\u0633 24 \u0627\u0644\u0628\u062b \u0627\u0644\u0645\u0628\u0627\u0634\u0631 \u000ahttp://f24.my/YTliveAR\u000a\u000aRejoignez nous sur Facebook\u000ahttps://www.facebook.com/FRANCE24.videos\u000a\u000aSuivez nous sur Twitter\u000ahttps://twitter.com/F24videos\u000a\u000aFRANCE 24 L''ACTUALIT\u00c9 INTERNATIONALE 24H/24\u000ahttp://www.france24.com','https://i.ytimg.com/vi/qKEk1YCOz8Q/default_live.jpg','FRANCE 24')
+COMMIT
+DISCONNECT
+/*C17*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C18*/SET SCHEMA PUBLIC
+INSERT INTO REQUEST VALUES('qKEk1YCOz8Q',1465252812663)
+COMMIT
+DISCONNECT
+/*C19*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C20*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C21*/SET SCHEMA PUBLIC
+INSERT INTO VIDEO VALUES('r86ADzTggN8','EURO 2016 Group D Preview | Spain, Turkey, Czech Republic & Croatia','\u25ba SUBSCRIBE to FOOTBALL DAILY: http://bit.ly/fdsubscribe\u000a\u000aJoe and Patrick have teamed up to preview Group D of Euro 2016! The pair give their prediction of how the group will pan out, who will be the star players, the tactics of each team and loads more! Do you agree or disagree with the predictions? Let us know in the comments.\u000a\u000aGroup A Preview: https://youtu.be/PzSTAsFY0to\u000a\u000aGroup B Preview: https://youtu.be/TrH_dA3fhMo\u000a\u000aGroup C Preview: https://youtu.be/vzXVQcVsu9M\u000a\u000aCheck out our brand new second channel on European football - http://bit.ly/EUROFDsubscribe\u000a\u000aThis is Football Daily, bringing you all the latest and greatest from football''s elite - featuring FOOTBALL DAILY WEEKLY, TRANSFER TALK, TOP 10s, INTERNET REACTS, IF PREMIER LEAGUE CLUBS WERE..., DRAW MY LIFE and ALL-TIME XIs. Get involved and SUBSCRIBE now to be part of Football Daily - one of the beautiful games largest and most passionate communities!\u000a\u000aFollow us on Instagram: http://bit.ly/1Q6sc0h\u000aFollow us on Twitter: http://bit.ly/YaRzlu\u000aLike us on Facebook: http://on.fb.me/10pugRr\u000aFollow us on Google+: http://bit.ly/10pRPdT','https://i.ytimg.com/vi/r86ADzTggN8/default.jpg','Football Daily')
+COMMIT
+DISCONNECT
+/*C22*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C23*/SET SCHEMA PUBLIC
+INSERT INTO REQUEST VALUES('r86ADzTggN8',1465252813072)
+COMMIT
+DISCONNECT
+/*C24*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C25*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C26*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C27*/SET SCHEMA PUBLIC
+INSERT INTO VIDEO VALUES('e-DlzyvPlZo','Flash D Fastest Champion n LoL','http://www.twitch.tv/trick2g \u000aFollow me @ twitter.com/trick2g for D Latest updates.\u000aUse Promo Code "TRK for 3% off G2A games https://www.g2a.com/r/t2g\u000aCredits for all editing to https://twitter.com/Hypercide','https://i.ytimg.com/vi/e-DlzyvPlZo/default.jpg','Trick2g')
+COMMIT
+DISCONNECT
+/*C28*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C29*/SET SCHEMA PUBLIC
+INSERT INTO REQUEST VALUES('e-DlzyvPlZo',1465252814183)
+COMMIT
+DISCONNECT
+/*C30*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C31*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C32*/SET SCHEMA PUBLIC
+INSERT INTO VIDEO VALUES('Z5dOd5ldjzo','Functional swords I''d recommend for $150-300 (mostly on Kult of Athena)','The previous recommendations video (under $150): https://www.youtube.com/watch?v=d5eb9JBF2yQ\u000a\u000aThe swords in this video that I''m comfortable recommending:\u000a\u000a3:00 Hanwei Tinker bastard sword\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/product.asp?item=SH2400&afid=28632&tm=14&im=1\u000a\u000a3:48 Hanwei Tinker Norman sword\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/product.asp?item=SH2426&afid=28632&tm=14&im=1\u000a\u000a4:18 Hanwei Tinker Great Sword of War\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/product.asp?item=SH2424&afid=28632&tm=14&im=1\u000a\u000a4:54 Hanwei Tinker longsword\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/product.asp?item=SH2394&afid=28632&tm=14&im=1\u000a\u000a5:35 Ronin Viking sword and arming sword\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/product.asp?item=RKE8&name=Ronin+Katana+-+European+Sword+%238+-+Viking+Sword&afid=28632&tm=14&im=1\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/product.asp?item=RKE9&name=Ronin+Katana+-+European+Sword+%239+-+Arming+Sword&afid=28632&tm=14&im=1\u000a\u000a6:28 Dynasty Forge swords\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/dynastyforge.asp&afid=28632&tm=14&im=1\u000a\u000a8:12 Windlass Classic Hoplite sword\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/product.asp?item=500734&afid=28632&tm=14&im=1\u000a\u000a9:12 Windlass Spanish falcata\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/product.asp?item=AH4111BN&afid=28632&tm=14&im=1\u000a\u000a9:52 Legacy Arms (aka Generation 2) swords (note that these are tough but overbuilt and somewhat clunky)\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/generation2.asp&afid=28632&tm=14&im=1\u000a\u000a11:00 Windlass Swedish Viking sword\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/product.asp?item=501054&afid=28632&tm=14&im=1\u000a\u000a12:58 Traditional Filipino Weapons\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com/tfw.asp&afid=28632&tm=14&im=1\u000a\u000a13:53 Valiant Armoury\u000ahttp://www.valiant-armoury.com/\u000a\u000a\u000a********************************************************************************\u000a\u000aMy favorite online store for buying swords (worldwide shipping):\u000ahttp://ww4.aitsafe.com/go.htm?go=kultofathena.com&afid=28632&tm=14&im=1\u000a\u000aChannel-related shirts and stuff:\u000ahttp://skallagrim.spreadshirt.com/\u000a\u000aSome recommended knife makers on Amazon:\u000ahttp://amzn.to/1qjwMNL\u000a\u000aWant to help fund future videos?\u000ahttp://www.patreon.com/skallagrim\u000a\u000aMy Facebook page:\u000ahttps://www.facebook.com/SkallagrimYT','https://i.ytimg.com/vi/Z5dOd5ldjzo/default.jpg','Skallagrim')
+COMMIT
+DISCONNECT
+/*C33*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C34*/SET SCHEMA PUBLIC
+INSERT INTO REQUEST VALUES('Z5dOd5ldjzo',1465252814862)
+COMMIT
+DISCONNECT
+/*C35*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C36*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C37*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C38*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C39*/SET SCHEMA PUBLIC
+DELETE FROM REQUEST WHERE VIDEOID='qKEk1YCOz8Q' AND TIME=1465252812663
+COMMIT
+DISCONNECT
+/*C40*/SET SCHEMA PUBLIC
+INSERT INTO PLAYEDREQUEST VALUES('qKEk1YCOz8Q',1465252812663,1465252825379)
+COMMIT
+DISCONNECT
+/*C41*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C42*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C43*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C44*/SET SCHEMA PUBLIC
+DELETE FROM REQUEST WHERE VIDEOID='r86ADzTggN8' AND TIME=1465252813072
+COMMIT
+DISCONNECT
+/*C45*/SET SCHEMA PUBLIC
+INSERT INTO PLAYEDREQUEST VALUES('r86ADzTggN8',1465252813072,1465252828824)
+COMMIT
+DISCONNECT
+/*C46*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C47*/SET SCHEMA PUBLIC
+DELETE FROM REQUEST WHERE VIDEOID='Z5dOd5ldjzo' AND TIME=1465252814862
+COMMIT
+DISCONNECT
+/*C48*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C49*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C50*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C51*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C52*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C53*/SET SCHEMA PUBLIC
+INSERT INTO REQUEST VALUES('Z5dOd5ldjzo',1465252832778)
+COMMIT
+DISCONNECT
+/*C54*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C55*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C56*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C57*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C58*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C59*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C60*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C61*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C62*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C63*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C64*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C65*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C66*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C67*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C68*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C69*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C70*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C71*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C72*/SET SCHEMA PUBLIC
+DELETE FROM REQUEST WHERE VIDEOID='e-DlzyvPlZo' AND TIME=1465252814183
+DELETE FROM REQUEST WHERE VIDEOID='Z5dOd5ldjzo' AND TIME=1465252832778
+COMMIT
+DISCONNECT
+/*C73*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C74*/SET SCHEMA PUBLIC
+DISCONNECT
