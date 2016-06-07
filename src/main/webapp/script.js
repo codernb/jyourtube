@@ -14,6 +14,7 @@ app.config( function ($httpProvider) {
 app.service('VideosService', ['$window', '$rootScope', '$http', function ($window, $rootScope, $http) {
 
   var service = this;
+  var results = [];
 
   var youtube = {
     ready: false,
@@ -25,8 +26,6 @@ app.service('VideosService', ['$window', '$rootScope', '$http', function ($windo
     playerWidth: '100%',
     state: 'stopped'
   };
-  var results = [];
-  var history = [];
 
   $window.onYouTubeIframeAPIReady = function () {
     youtube.ready = true;
@@ -67,29 +66,32 @@ app.service('VideosService', ['$window', '$rootScope', '$http', function ($windo
 
   this.listResults = function (data, append) {
     if (!append)
-      results.length = 0;
+    	results.length = 0;
     for (var i = data.items.length - 1; i >= 0; i--) 
-      $http.get('https://www.googleapis.com/youtube/v3/videos', {
-        params: {
-          key: 'AIzaSyCDx2qUdt0KTmNqSjErNeiYrx1tr6xVc6Q',
-          id: data.items[i].id.videoId,
-          part: 'snippet, status',
-          fields: 'items/id, items/snippet/title, items/snippet/description, items/snippet/thumbnails/default, items/snippet/channelTitle, items/status/embeddable',
-          q: this.query
-        }
-      })
-      .success( function (data) {
-        if (data.items[0].status.embeddable)
-          results.push({
-            id: data.items[0].id,
-            title: data.items[0].snippet.title,
-            description: data.items[0].snippet.description,
-            thumbnail: data.items[0].snippet.thumbnails.default.url,
-            author: data.items[0].snippet.channelTitle
-          });
-      });
-    return results;
+    	getVideo(data.items[i].id.videoId, i);
   };
+  
+  function getVideo(id, index) {
+      $http.get('https://www.googleapis.com/youtube/v3/videos', {
+          params: {
+            key: 'AIzaSyCDx2qUdt0KTmNqSjErNeiYrx1tr6xVc6Q',
+            id: id,
+            part: 'snippet, status',
+            fields: 'items/id, items/snippet/title, items/snippet/description, items/snippet/thumbnails/default, items/snippet/channelTitle, items/status/embeddable',
+            q: this.query
+          }
+        })
+        .success( function (data) {
+          if (data.items[0].status.embeddable)
+            results[index] = {
+              id: data.items[0].id,
+              title: data.items[0].snippet.title,
+              description: data.items[0].snippet.description,
+              thumbnail: data.items[0].snippet.thumbnails.default.url,
+              author: data.items[0].snippet.channelTitle
+            };
+        });
+  }
 
   this.getYoutube = function () {
     return youtube;
@@ -128,8 +130,10 @@ app.controller('MainController', function ($scope, $http, $interval, VideosServi
     }
     
     $scope.update = function() {
+    	$http.get('/video/current').success(function (data) {
+    		$scope.current = data;
+    	});
         $http.get('/video/requested').success(function (data) {
-            data = Object.keys(data).map(function (key) {return data[key]});
             $scope.videos = data;
         });
     }
@@ -156,12 +160,28 @@ app.controller('MainController', function ($scope, $http, $interval, VideosServi
 });
 
 app.controller('UIController', function ($scope, $http, $interval, VideosService) {
+	
+	$scope.videoOrder = 'title';
+	$scope.descending = false;
 
     $scope.results = VideosService.getResults();
     
+    $scope.setOrder = function(order) {
+    	if ($scope.videoOrder === order)
+    		$scope.descending = !$scope.descending;
+    	else
+    		$scope.videoOrder = order;
+    }
+    
     $scope.update = function() {
+        $http.get('/video/current').success(function (data) {
+            $scope.current = data;
+        });
         $http.get('/video/requested').success(function (data) {
             $scope.videos = data;
+        });
+        $http.get('/video').success(function (data) {
+            $scope.allVideos = data;
         });
     };
     
@@ -186,11 +206,18 @@ app.controller('UIController', function ($scope, $http, $interval, VideosService
             $scope.version = data;
             $scope.update();
         });
-    }, 3000);
+        if ($scope.searchRequested) {
+        	$scope.searchRequested = false;
+        	$scope.search(true);
+        }
+    }, 1000);
     
     $scope.search = function (isNewQuery) {
-    if ($scope.loading)
-      return;
+      $scope.query = this.query;
+      if ($scope.loading) {
+    	  $scope.searchRequested = true;
+    	  return;
+      }
       $scope.loading = true;
       $http.get('https://www.googleapis.com/youtube/v3/search', {
         params: {
@@ -200,7 +227,7 @@ app.controller('UIController', function ($scope, $http, $interval, VideosService
           pageToken: isNewQuery ? '' : $scope.nextPageToken,
           part: 'id',
           fields: 'items/id, nextPageToken',
-          q: this.query
+          q: $scope.query
         }
       })
       .success( function (data) {
@@ -215,5 +242,4 @@ app.controller('UIController', function ($scope, $http, $interval, VideosService
         $scope.loading = false;
       });
     };
-    
 });

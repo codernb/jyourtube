@@ -13,9 +13,9 @@ public class YourtubeApplication {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		Class.forName("org.hsqldb.jdbcDriver");
 		
-		QueryExecuter.execute("DROP TABLE IF EXISTS playedRequest");
-		QueryExecuter.execute("DROP TABLE IF EXISTS request");
-		QueryExecuter.execute("DROP TABLE IF EXISTS video");
+//		QueryExecuter.execute("DROP TABLE IF EXISTS playedRequest");
+//		QueryExecuter.execute("DROP TABLE IF EXISTS request");
+//		QueryExecuter.execute("DROP TABLE IF EXISTS video");
 		
 		QueryExecuter.execute(
 				"CREATE TABLE IF NOT EXISTS video (id VARCHAR(11) PRIMARY KEY, title VARCHAR(255), description VARCHAR(16383), thumbnail VARCHAR(255), author VARCHAR(255))");

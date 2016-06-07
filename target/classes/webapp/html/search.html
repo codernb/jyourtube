@@ -5,7 +5,7 @@
         </form>
     </div>
     <ons-list class="after-search-bar">
-        <ons-list-item modifier="tappable" class="list-item-container" ng-repeat="video in results | orderBy: 'title'" ng-click="enterVideo(video)">
+        <ons-list-item modifier="tappable" class="list-item-container" ng-repeat="video in results" ng-click="enterVideo(video)">
             <ons-row>
                 <ons-col width="95px">
                     <img class="thumbnail" ng-src="{{ video.thumbnail }}">
@@ -17,9 +17,9 @@
                     <div class="user">
                         <ons-icon icon="fa fa-user"><span style="font-size: 12px"> {{ video.author ? video.author : "Anonymous" }}</span></ons-icon>
                     </div>
-                    <div class="desc">
-                        {{ video.description }}
-                    </div>
+<!--                     <div class="desc"> -->
+<!--                         {{ video.description }} -->
+<!--                     </div> -->
                 </ons-col>
                 <ons-col width="40px"></ons-col>
             </ons-row>

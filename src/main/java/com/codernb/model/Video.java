@@ -1,5 +1,8 @@
 package com.codernb.model;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.apache.commons.lang.StringEscapeUtils;
 
 public class Video {
@@ -9,80 +12,64 @@ public class Video {
 	public String description;
 	public String thumbnail;
 	public String author;
+	public List<PlayedRequest> playedRequests;
+	public int timesPlayed;
+	public long firstPlayed;
+	public long lastPlayed;
 	
 	public Video() {
 	}
 
-	public Video(String id, String title, String description, String thumbnail, String author) {
+	public Video(String id, String title, String description, String thumbnail, String author, List<PlayedRequest> playedRequests) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.thumbnail = thumbnail;
 		this.author = author;
+		this.playedRequests = playedRequests;
+		timesPlayed = getTimesPlayed();
+		firstPlayed = getFirstPlayed();
+		lastPlayed = getLastPlayed();
 	}
-
-	public String getId() {
-		return id;
+	
+	public int getTimesPlayed() {
+		return playedRequests.size();
+	}
+	
+	public long getFirstPlayed() {
+		Optional<PlayedRequest> optional = playedRequests.stream().reduce((a, b) -> a.timePlayed < b.timePlayed ? a : b);
+		if (optional.isPresent())
+			return optional.get().timePlayed;
+		else
+			return 0;
+	}
+	
+	public long getLastPlayed() {
+		Optional<PlayedRequest> optional = playedRequests.stream().reduce((a, b) -> a.timePlayed >= b.timePlayed ? a : b);
+		if (optional.isPresent())
+			return optional.get().timePlayed;
+		else
+			return 0;
 	}
 
 	public String getIdEscaped() {
 		return StringEscapeUtils.escapeSql(id);
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getITitleEscaped() {
-		return StringEscapeUtils.escapeSql(title);
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public String getTitleEscaped() {
 		return StringEscapeUtils.escapeSql(title);
-	}
-
-	public String getDescription() {
-		return description;
 	}
 
 	public String getDescriptionEscaped() {
 		return StringEscapeUtils.escapeSql(description);
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getThumbnail() {
-		return thumbnail;
-	}
-
 	public String getThumbnailEscaped() {
 		return StringEscapeUtils.escapeSql(thumbnail);
 	}
 
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
 	public String getAuthorEscaped() {
 		return StringEscapeUtils.escapeSql(author);
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 
 }

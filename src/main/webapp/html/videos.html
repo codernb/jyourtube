@@ -1,0 +1,63 @@
+<ons-page>
+    <ons-list>
+    	<ons-list-header>
+    		<ons-row>
+    			<ons-col width="95px">
+    				Order By:
+    			</ons-col>
+    			<ons-col>
+    				<span ng-click="setOrder('title')">
+    					Title
+    				</span>
+    			</ons-col>
+    			<ons-col>
+    				<span ng-click="setOrder('timesPlayed')">
+    					Requests Played
+    				</span>
+    			</ons-col>
+    			<ons-col>
+    				<span ng-click="setOrder('firstPlayed')">
+    					First
+    				</span>
+    			</ons-col>
+    			<ons-col>
+    				<span ng-click="setOrder('lastPlayed')">
+    					Last
+    				</span>
+    			</ons-col>
+    			<ons-col width="40px"></ons-col>
+    		</ons-row>
+    	</ons-list-header>
+        <ons-list-item modifier="tappable" class="list-item-container" ng-repeat="video in allVideos | orderBy : videoOrder : descending" ng-click="enterVideo(video)">
+            <ons-row>
+                <ons-col width="95px">
+                    <img class="thumbnail" ng-src="{{ video.thumbnail }}">
+                </ons-col>
+                <ons-col>
+                    <div class="title">
+                        {{ video.title }}
+                    </div>
+                    <div class="user">
+                        <ons-icon icon="fa fa-user"><span style="font-size: 12px"> {{ video.author ? video.author : "Anonymous" }}</span></ons-icon>
+                    </div>
+                </ons-col>
+                <ons-col>
+                    <div class="desc" style="margin-left: 20px;">
+                        {{ video.timesPlayed }}
+                    </div>
+                </ons-col>
+                <ons-col>
+                    <div class="desc">
+                        {{ video.firstPlayed | date : 'dd.MM.yy | HH:mm' }}
+                    </div>
+                </ons-col>
+                <ons-col>
+                    <div class="desc">
+                        {{ video.lastPlayed | date : 'dd.MM.yy | HH:mm' }}
+                    </div>
+                </ons-col>
+                <ons-col width="40px"></ons-col>
+            </ons-row>
+        </ons-list-item>
+    </ons-list>
+</ons-page>

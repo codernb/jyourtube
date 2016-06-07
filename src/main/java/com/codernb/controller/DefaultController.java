@@ -5,12 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.codernb.access.RequestAccess;
-
 @Controller
 public class DefaultController {
 	
-	private int volume = 100;
+	private static int volume = 100;
+	private static int version;
 
 	@RequestMapping("/")
 	public String home() {
@@ -29,7 +28,11 @@ public class DefaultController {
 
 	@RequestMapping("/version")
 	public @ResponseBody int getVersion() {
-		return RequestAccess.getVersion();
+		return version;
+	}
+	
+	public static void update() {
+		version++;
 	}
 
 	@RequestMapping("/volume")

@@ -3,13 +3,11 @@ package com.codernb.access;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import com.codernb.controller.DefaultController;
 import com.codernb.exception.AccessException;
 import com.codernb.exception.NoEntryException;
-import com.codernb.model.PlayedRequest;
-import com.codernb.model.Request;
 import com.codernb.model.Video;
 
 public class VideoAccess {
@@ -19,14 +17,12 @@ public class VideoAccess {
 
 	public static void add(Video video) {
 		try {
-			ResultSet resultSet = QueryExecuter
-					.execute(String.format("SELECT * FROM video WHERE id = '%s'", video.getId()));
+			ResultSet resultSet = QueryExecuter.execute(String.format("SELECT * FROM video WHERE id = '%s'", video.id));
 			if (!resultSet.next())
 				QueryExecuter.execute(String.format(
 						"INSERT INTO video (id, title, description, thumbnail, author) VALUES ('%s', '%s', '%s', '%s', '%s')",
-						video.getIdEscaped(), video.getTitleEscaped(), video.getDescriptionEscaped(), video.getThumbnailEscaped(),
-						video.getAuthorEscaped()));
-			RequestAccess.add(new Request(video.getId(), new Date().getTime()));
+						video.getIdEscaped(), video.getTitleEscaped(), video.getDescriptionEscaped(),
+						video.getThumbnailEscaped(), video.getAuthorEscaped()));
 		} catch (SQLException e) {
 			throw new AccessException(e);
 		}
@@ -50,18 +46,28 @@ public class VideoAccess {
 					"SELECT MIN(time) AS time, id, title, description, thumbnail, author FROM request JOIN video ON request.videoId = video.id GROUP BY id");
 			if (!resultSet.next())
 				throw new NoEntryException();
-			String videoId = resultSet.getString("id");
-			RequestAccess.delete(videoId);
-			PlayedRequestsAccess.add(new PlayedRequest(videoId, resultSet.getLong("time"), new Date().getTime()));
 			return getVideo(resultSet);
 		} catch (SQLException e) {
 			throw new AccessException(e);
 		}
 	}
-	
+
+	public static Video getRandom() {
+		try {
+			ResultSet resultSet = QueryExecuter.execute("SELECT * FROM video ORDER BY RAND() LIMIT 1");
+			if (!resultSet.next())
+				throw new NoEntryException();
+			DefaultController.update();
+			return getVideo(resultSet);
+		} catch (SQLException e) {
+			throw new AccessException();
+		}
+	}
+
 	public static List<Video> getRequested() {
 		try {
-			ResultSet resultSet = QueryExecuter.execute("SELECT * FROM request JOIN video ON request.videoId = video.id");
+			ResultSet resultSet = QueryExecuter
+					.execute("SELECT * FROM request JOIN video ON request.videoId = video.id");
 			List<Video> videos = new ArrayList<>();
 			while (resultSet.next())
 				videos.add(getVideo(resultSet));
@@ -72,8 +78,9 @@ public class VideoAccess {
 	}
 
 	private static Video getVideo(ResultSet resultSet) throws SQLException {
-		return new Video(resultSet.getString("id"), resultSet.getString("title"), resultSet.getString("description"),
-				resultSet.getString("thumbnail"), resultSet.getString("author"));
+		String videoId = resultSet.getString("id");
+		return new Video(videoId, resultSet.getString("title"), resultSet.getString("description"),
+				resultSet.getString("thumbnail"), resultSet.getString("author"), PlayedRequestsAccess.get(videoId));
 	}
 
 }

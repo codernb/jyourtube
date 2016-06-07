@@ -12,10 +12,31 @@
     </head>
     <body ng-controller="MainController">
         <ons-page>
-            <div id="placeholder" style="width: 100%; height: 600px"></div>
-            <ons-button modifier="large--cta" ng-click="next()">Next</ons-button>
-            <ons-button modifier="large--cta" ng-click="clear()">Clear</ons-button>
+            <div id="placeholder" style="height: 400px"></div>
+<!--             <ons-button modifier="large--cta" ng-click="next()">Next</ons-button> -->
+<!--             <ons-button modifier="large--cta" ng-click="clear()">Clear</ons-button> -->
             <ons-list>
+   				<ons-list-header>Current</ons-list-header>
+	            <ons-list-item class="list-item-container">
+	                <ons-row>
+	                    <ons-col width="95px">
+	                        <img class="thumbnail" ng-src="{{ current.thumbnail }}">
+	                    </ons-col>
+	                    <ons-col>
+	                        <div class="title">
+	                            {{ current.title }}
+	                        </div>
+	                        <div class="user">
+	                            <ons-icon icon="fa fa-user"><span style="font-size: 12px"> {{ current.author ? current.author : "Anonymous" }}</span></ons-icon>
+	                        </div>
+<!-- 	                        <div class="desc"> -->
+<!-- 	                            {{ current.description }} -->
+<!-- 	                        </div> -->
+	                    </ons-col>
+	                    <ons-col width="40px"></ons-col>
+	                </ons-row>
+	            </ons-list-item>
+    			<ons-list-header>Next</ons-list-header>
                 <ons-list-item class="list-item-container" modifier="tappable" ng-repeat="video in videos" ng-click="remove(video)">
                     <ons-row>
                         <ons-col width="95px">
@@ -28,14 +49,20 @@
                             <div class="user">
                                 <ons-icon icon="fa fa-user"><span style="font-size: 12px"> {{ video.author ? video.author : "Anonymous" }}</span></ons-icon>
                             </div>
-                            <div class="desc">
-                                {{ video.description }}
-                            </div>
+<!--                             <div class="desc"> -->
+<!--                                 {{ video.description }} -->
+<!--                             </div> -->
                         </ons-col>
                         <ons-col width="40px"></ons-col>
                     </ons-row>
                 </ons-list-item>
             </ons-list>
+            <ons-bottom-toolbar>
+		        <ons-tabbar>
+		            <ons-tab ng-click="next()" icon="fa fa-angle-double-right" label="Next"></ons-tab>
+		            <ons-tab ng-click="clear()" no-reload icon="fa fa-trash-o" label="Clear"></ons-tab>
+		        </ons-tabbar>
+			</ons-bottom-toolbar>
         </ons-page>
     </body>
 </html>
