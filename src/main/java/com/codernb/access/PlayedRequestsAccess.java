@@ -17,7 +17,7 @@ public class PlayedRequestsAccess {
 	public static void add(PlayedRequest playedRequest) {
 		try {
 			QueryExecuter.execute(
-					String.format("INSERT INTO playedRequest (videoId, time, timePlayed) VALUES ('%s', '%s', '%s')",
+					String.format("INSERT INTO playedRequest (videoId, time, timePlayed) VALUES ('%s', '%d', '%d')",
 							playedRequest.videoId, playedRequest.time, playedRequest.timePlayed));
 		} catch (SQLException e) {
 			throw new AccessException(e);

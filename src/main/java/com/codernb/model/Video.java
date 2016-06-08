@@ -9,7 +9,6 @@ public class Video {
 
 	public String id;
 	public String title;
-	public String description;
 	public String thumbnail;
 	public String author;
 	public List<PlayedRequest> playedRequests;
@@ -20,10 +19,9 @@ public class Video {
 	public Video() {
 	}
 
-	public Video(String id, String title, String description, String thumbnail, String author, List<PlayedRequest> playedRequests) {
+	public Video(String id, String title, String thumbnail, String author, List<PlayedRequest> playedRequests) {
 		this.id = id;
 		this.title = title;
-		this.description = description;
 		this.thumbnail = thumbnail;
 		this.author = author;
 		this.playedRequests = playedRequests;
@@ -33,7 +31,7 @@ public class Video {
 	}
 	
 	public int getTimesPlayed() {
-		return playedRequests.size();
+		return playedRequests == null ? 0 : playedRequests.size();
 	}
 	
 	public long getFirstPlayed() {
@@ -58,10 +56,6 @@ public class Video {
 
 	public String getTitleEscaped() {
 		return StringEscapeUtils.escapeSql(title);
-	}
-
-	public String getDescriptionEscaped() {
-		return StringEscapeUtils.escapeSql(description);
 	}
 
 	public String getThumbnailEscaped() {

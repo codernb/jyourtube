@@ -17,12 +17,25 @@ public class VideoAccess {
 
 	public static void add(Video video) {
 		try {
-			ResultSet resultSet = QueryExecuter.execute(String.format("SELECT * FROM video WHERE id = '%s'", video.id));
-			if (!resultSet.next())
+			get(video.id);
+		} catch (NoEntryException e) {
+			try {
 				QueryExecuter.execute(String.format(
-						"INSERT INTO video (id, title, description, thumbnail, author) VALUES ('%s', '%s', '%s', '%s', '%s')",
-						video.getIdEscaped(), video.getTitleEscaped(), video.getDescriptionEscaped(),
-						video.getThumbnailEscaped(), video.getAuthorEscaped()));
+						"INSERT INTO video (id, title, thumbnail, author) VALUES ('%s', '%s', '%s', '%s')",
+						video.getIdEscaped(), video.getTitleEscaped(), video.getThumbnailEscaped(),
+						video.getAuthorEscaped()));
+			} catch (SQLException e1) {
+				throw new AccessException(e1);
+			}
+		}
+	}
+
+	public static Video get(String videoId) {
+		try {
+			ResultSet resultSet = QueryExecuter.execute(String.format("SELECT * FROM video WHERE id = '%s'", videoId));
+			if (!resultSet.next())
+				throw new NoEntryException();
+			return getVideo(resultSet);
 		} catch (SQLException e) {
 			throw new AccessException(e);
 		}
@@ -43,7 +56,7 @@ public class VideoAccess {
 	public static Video getNext() {
 		try {
 			ResultSet resultSet = QueryExecuter.execute(
-					"SELECT MIN(time) AS time, id, title, description, thumbnail, author FROM request JOIN video ON request.videoId = video.id GROUP BY id");
+					"SELECT MIN(time) AS time, id, title, thumbnail, author FROM request JOIN video ON request.videoId = video.id GROUP BY id");
 			if (!resultSet.next())
 				throw new NoEntryException();
 			return getVideo(resultSet);
@@ -79,8 +92,8 @@ public class VideoAccess {
 
 	private static Video getVideo(ResultSet resultSet) throws SQLException {
 		String videoId = resultSet.getString("id");
-		return new Video(videoId, resultSet.getString("title"), resultSet.getString("description"),
-				resultSet.getString("thumbnail"), resultSet.getString("author"), PlayedRequestsAccess.get(videoId));
+		return new Video(videoId, resultSet.getString("title"), resultSet.getString("thumbnail"),
+				resultSet.getString("author"), PlayedRequestsAccess.get(videoId));
 	}
 
 }

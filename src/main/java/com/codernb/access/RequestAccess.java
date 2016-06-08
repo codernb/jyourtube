@@ -34,7 +34,7 @@ public class RequestAccess {
 					.execute(String.format("SELECT * FROM request WHERE videoId = '%s'", request.videoId));
 			if (resultSet.next())
 				return;
-			QueryExecuter.execute(String.format("INSERT INTO request (videoId, time) VALUES ('%s', '%s')",
+			QueryExecuter.execute(String.format("INSERT INTO request (videoId, time) VALUES ('%s', '%d')",
 					request.videoId, request.time));
 			DefaultController.update();
 		} catch (SQLException e) {
