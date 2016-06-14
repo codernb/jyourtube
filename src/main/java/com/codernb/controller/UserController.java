@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.codernb.access.UserAccess;
 import com.codernb.model.User;
 
-@Controller("/user")
+@Controller
+@RequestMapping("/user")
 public class UserController {
 	
 	@RequestMapping

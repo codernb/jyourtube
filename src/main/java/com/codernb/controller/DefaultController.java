@@ -10,7 +10,7 @@ public class DefaultController {
 	
 	private static int volume = 100;
 	private static int version;
-
+	
 	@RequestMapping("/")
 	public String home() {
 		return index();
